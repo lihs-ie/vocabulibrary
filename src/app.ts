@@ -25,7 +25,10 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
 
         const decoded = decodeURIComponent(event.body.split('=')[1]);
 
-        const vocabularies = decoded.replace(/(\r\n|\n|\r)/g, ',').split(',');
+        const vocabularies = decoded
+            .replace(/(\r\n|\n|\r)/g, ',')
+            .replace('+', ' ')
+            .split(',');
 
         await Promise.all(
             vocabularies.map(async (vocabulary: string) => {
