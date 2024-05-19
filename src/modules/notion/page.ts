@@ -889,7 +889,7 @@ const createImageArea = (vocabulary: string) => {
                                 text: {
                                     content: 'definitionで画像を検索',
                                     link: {
-                                        url: `https://www.google.com/search?q=${vocabulary}+difinition&tbm=isch`,
+                                        url: `https://www.google.com/search?q=${vocabulary}+definition&tbm=isch`,
                                     },
                                 },
                                 annotations: {
@@ -920,7 +920,7 @@ const createImageArea = (vocabulary: string) => {
                                 text: {
                                     content: 'definitionなしで画像を検索',
                                     link: {
-                                        url: `https://www.google.com/search?q=${vocabulary}+difinition&tbm=isch`,
+                                        url: `https://www.google.com/search?q=${vocabulary}&tbm=isch`,
                                     },
                                 },
                                 annotations: {
@@ -931,8 +931,8 @@ const createImageArea = (vocabulary: string) => {
                                     code: false,
                                     color: 'default',
                                 },
-                                plain_text: 'https://www.google.com/search?q=pretty+much&tbm=isch',
-                                href: null,
+                                plain_text: 'definitionなしで画像を検索',
+                                href: `https://www.google.com/search?q=${vocabulary}&tbm=isch`,
                             },
                         ],
                         color: 'blue',
