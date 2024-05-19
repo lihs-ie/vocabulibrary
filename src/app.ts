@@ -27,13 +27,13 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
 
         const vocabularies = decoded
             .replace(/(\r\n|\n|\r)/g, ',')
-            .replace('+', ' ')
+            .replace(/\+/g, ' ')
             .split(',');
 
         await Promise.all(
             vocabularies.map(async (vocabulary: string) => {
                 try {
-                    const expiration = await getExpiration(vocabulary);
+                    const expiration = await getExpiration(decodeURIComponent(vocabulary).replace(/\+/g, ' '));
                     await createVocabularyPage(expiration);
                     console.log(`Created "${vocabulary}" page`);
                 } catch (error) {
