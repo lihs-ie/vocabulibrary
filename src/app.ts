@@ -25,14 +25,14 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
 
         const decoded = decodeURIComponent(event.body.split('=')[1]);
 
-        const vocabularies = decoded.indexOf('\r\n') > 1 ? decoded.split('\r\n') : decoded.split('\n');
+        const vocabularies = decoded.replace(/(\r\n|\n|\r)/g, ',').split(',');
 
         await Promise.all(
-            vocabularies.map(async (vocabulary) => {
+            vocabularies.map(async (vocabulary: string) => {
                 try {
                     const expiration = await getExpiration(vocabulary);
                     await createVocabularyPage(expiration);
-                    console.log(`Created ${vocabulary} page`);
+                    console.log(`Created "${vocabulary}" page`);
                 } catch (error) {
                     console.log(`Failed to create ${vocabulary} page`);
                     console.log(error);
